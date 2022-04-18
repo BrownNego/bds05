@@ -6,8 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_review")
 public class Review implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -17,19 +21,23 @@ public class Review implements Serializable{
 	
 	private String text;
 	
+	@ManyToOne
+	@JoinColumn(name = "movie_id")
 	private Movie movie;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	public Review() {
 		
 	}
 
-	public Review(Long id, String text, Movie movie, User user) {
+	public Review(Long id, String text, Movie movie) {
+		super();
 		this.id = id;
 		this.text = text;
 		this.movie = movie;
-		this.user = user;
 	}
 
 	public Long getId() {
