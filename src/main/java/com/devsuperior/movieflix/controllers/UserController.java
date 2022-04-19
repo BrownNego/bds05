@@ -12,7 +12,7 @@ import com.devsuperior.movieflix.dto.UserDTO;
 import com.devsuperior.movieflix.services.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(value = "/users")
 public class UserController {
 	
 	@Autowired
@@ -23,6 +23,12 @@ public class UserController {
 		List<UserDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 		
+	}
+	
+	@GetMapping(value = "/profile")
+	public ResponseEntity<UserDTO> getProfile(){
+		UserDTO userDTO = service.getProfile();
+		return ResponseEntity.ok().body(userDTO);
 	}
 
 }
